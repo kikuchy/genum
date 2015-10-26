@@ -1,0 +1,17 @@
+group 'net.kikuchy'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.yaml:snakeyaml:1.16'
+    compile 'com.github.spullara.mustache.java:compiler:0.9.1'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
