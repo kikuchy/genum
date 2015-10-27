@@ -1,10 +1,12 @@
 package net.kikuchy.genum;
 
 import net.kikuchy.genum.entity.EnumeratorMetaData;
+import net.kikuchy.genum.entity.EnumeratorValue;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.zip.DataFormatException;
 
 /**
@@ -19,8 +21,10 @@ public final class Genum {
         this.option = option;
     }
 
-    public void generate(OutputStream generatedCodeDestination) throws DataFormatException, IOException {
-        EnumeratorMetaData metaData = sourceLoader.parse();
+    public void generate(InputStream sourceArrayStream ,OutputStream generatedCodeDestination)
+            throws DataFormatException, IOException {
+        List<EnumeratorValue> values = sourceLoader.parse(sourceArrayStream, "");
+        EnumeratorMetaData metaData = new EnumeratorMetaData(option.getCanonicalName(), values);
         TemplateAdapter adapter = new TemplateAdapter(metaData);
         adapter.adapt(codeTemplateStream, generatedCodeDestination);
     }
