@@ -55,8 +55,8 @@ public final class Genum {
 
         public Builder(String canonicalClassName, SourceLoader sourceLoader) {
             Pair<String, String> packClass = StringUtil.splitPackageNameAndClassName(canonicalClassName);
-            this.className = packClass.getLeft();
-            this.packageName = packClass.getRight();
+            this.className = packClass.getRight();
+            this.packageName = packClass.getLeft();
             this.sourceLoader = sourceLoader;
         }
 
