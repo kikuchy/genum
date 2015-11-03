@@ -1,2 +1,3 @@
-rootProject.name = 'genum'
+include ':genum'
+include ':genum-cli'
 
