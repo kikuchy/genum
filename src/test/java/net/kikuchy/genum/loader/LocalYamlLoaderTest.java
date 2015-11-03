@@ -31,7 +31,7 @@ public class LocalYamlLoaderTest {
         SourceLoader loader = new LocalYamlLoader();
         List<EnumeratorValue> values = loader.parse(stringToStream(simpleYaml), "");
         assertThat(values.size(), is(3));
-        assertThat(values.get(0).getValue(), is("hoge"));
+        assertThat(values.get(0).getValue(), is("HOGE"));
     }
 
     @Test

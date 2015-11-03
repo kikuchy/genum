@@ -5,7 +5,10 @@ import com.squareup.javapoet.TypeSpec;
 import net.kikuchy.genum.entity.EnumeratorMetaData;
 import net.kikuchy.genum.entity.EnumeratorValue;
 
-import java.io.*;
+import javax.lang.model.element.Modifier;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 /**
  * Created by kikuchy on 2015/10/26.
@@ -20,6 +23,7 @@ public final class SourceGenerator {
     public void adapt(OutputStream generatedCodeOutStream) throws IOException {
         OutputStreamWriter writer = new OutputStreamWriter(generatedCodeOutStream);
         TypeSpec.Builder builder = TypeSpec.enumBuilder(enumeratorMetaData.getClassName());
+        builder.addModifiers(Modifier.PUBLIC);
         for (EnumeratorValue v : enumeratorMetaData.getEnums()) {
             builder.addEnumConstant(v.getValue());
         }

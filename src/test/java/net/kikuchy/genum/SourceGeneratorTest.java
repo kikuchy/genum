@@ -24,8 +24,8 @@ public class SourceGeneratorTest {
         adapter.adapt(os);
         assertThat(os.toString(), is("package com.example;\n" +
                 "\n" +
-                "enum Hoge {\n" +
-                "  hoge\n" +
+                "public enum Hoge {\n" +
+                "  HOGE\n" +
                 "}\n"));
     }
 }

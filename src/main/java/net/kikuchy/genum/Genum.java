@@ -2,6 +2,8 @@ package net.kikuchy.genum;
 
 import net.kikuchy.genum.entity.EnumeratorMetaData;
 import net.kikuchy.genum.entity.EnumeratorValue;
+import net.kikuchy.genum.internal.StringUtil;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,9 +19,8 @@ public final class Genum {
     private String className;
     private GenumOption option;
     private SourceLoader sourceLoader;
-    private InputStream codeTemplateStream;
 
-    public void generate(InputStream sourceArrayStream ,OutputStream generatedCodeDestination)
+    public void generate(InputStream sourceArrayStream, OutputStream generatedCodeDestination)
             throws DataFormatException, IOException {
         List<EnumeratorValue> values = sourceLoader.parse(sourceArrayStream, "");
         EnumeratorMetaData metaData = new EnumeratorMetaData(packageName, className, values);
@@ -33,21 +34,18 @@ public final class Genum {
 
         private GenumOption option;
         private SourceLoader sourceLoader;
-        private InputStream codeTemplateStream;
 
-        public Builder(String packageName, String className, SourceLoader sourceLoader, InputStream codeTemplateStream) {
+        public Builder(String packageName, String className, SourceLoader sourceLoader) {
             this.className = className;
             this.packageName = packageName;
             this.sourceLoader = sourceLoader;
-            this.codeTemplateStream = codeTemplateStream;
         }
 
-        public Builder(String canonialClassName, SourceLoader sourceLoader, InputStream codeTemplateStream) {
-            int lastPeriodIdx = canonialClassName.lastIndexOf('.');
-            this.className = canonialClassName.substring(lastPeriodIdx);
-            this.packageName =  canonialClassName.substring(0, lastPeriodIdx);
+        public Builder(String canonicalClassName, SourceLoader sourceLoader) {
+            Pair<String, String> packClass = StringUtil.splitPackageNameAndClassName(canonicalClassName);
+            this.className = packClass.getLeft();
+            this.packageName = packClass.getRight();
             this.sourceLoader = sourceLoader;
-            this.codeTemplateStream = codeTemplateStream;
         }
 
         public Builder setOption(GenumOption option) {
@@ -57,7 +55,6 @@ public final class Genum {
 
         public Genum build() {
             Genum genum = new Genum();
-            genum.codeTemplateStream = codeTemplateStream;
             genum.sourceLoader = sourceLoader;
             genum.packageName = packageName;
             genum.className = className;
