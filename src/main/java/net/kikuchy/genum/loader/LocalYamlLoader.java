@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.zip.DataFormatException;
 
 /**
- * Created by kikuchy on 2015/10/26.
+ * Genum default {@link SourceLoader}.
+ * It loads string YAML file by stream (local file, standard input or etc... (maybe you can use network)).
  */
 public class LocalYamlLoader implements SourceLoader {
     @Override

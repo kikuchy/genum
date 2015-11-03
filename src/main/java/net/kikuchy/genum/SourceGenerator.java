@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 /**
- * Created by kikuchy on 2015/10/26.
+ * Generate java enum source code from abstracted data source.
  */
 public final class SourceGenerator {
     private EnumeratorMetaData enumeratorMetaData;

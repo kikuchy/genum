@@ -1,16 +1,9 @@
 package net.kikuchy.genum;
 
 /**
- * Created by kikuchy on 2015/10/26.
+ * Contains Genum's options.
+ *
+ * Now, nothing to use. It's existing for future extensibility.
  */
 public class GenumOption {
-    private String canonicalName = "";
-
-    public String getCanonicalName() {
-        return canonicalName;
-    }
-
-    public void setCanonicalName(String canonicalName) {
-        this.canonicalName = canonicalName;
-    }
 }
