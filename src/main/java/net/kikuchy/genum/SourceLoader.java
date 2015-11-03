@@ -1,6 +1,5 @@
 package net.kikuchy.genum;
 
-import net.kikuchy.genum.entity.EnumeratorMetaData;
 import net.kikuchy.genum.entity.EnumeratorValue;
 
 import java.io.InputStream;

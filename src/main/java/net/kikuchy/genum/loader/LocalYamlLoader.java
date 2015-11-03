@@ -1,14 +1,12 @@
 package net.kikuchy.genum.loader;
 
 import net.kikuchy.genum.SourceLoader;
-import net.kikuchy.genum.entity.EnumeratorMetaData;
 import net.kikuchy.genum.entity.EnumeratorValue;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.zip.DataFormatException;
 
 /**
