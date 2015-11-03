@@ -14,8 +14,9 @@ import java.util.zip.DataFormatException;
 /**
  * Generate Java Enum class file from arrayed data source.
  * Genum needs package name, enum's class name, data source and java file's destination.
- * <p/>
+ * <p>
  * Genum can use custom {@link SourceLoader}, so you can use JSON or other format if you make the custom loader.
+ * </p>
  */
 public final class Genum {
     private String packageName;
