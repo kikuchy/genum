@@ -2,29 +2,58 @@
 
 Genum is the code generator that generate Java enum class file from YAML array.
 
+You can share the definition between server sile and client application!
+
 For example, here is a array written in YAML format.
 
 ```yaml
 - Tokyo
-- London
 - NewYork
+- London
 - Beijing
+- Paris
+- Roma
 ```
 
-Genum turns it into like this.
+Genum turns it into Enum java file.
 
 ```java
+package com.example;
+
 public enum City {
-    Tokyo,
-    London,
-    NewYork,
-    Beijing;
+  TOKYO,
+
+  NEW_YORK,
+
+  LONDON,
+
+  BEIJING,
+
+  PARIS,
+
+  ROMA
 }
 ```
 
 ## Usage
 
-WIP
+
+### CLI tool
+
+Download [latest cli tool](https://github.com/kikuchy/genum/releases) and unzip it.
+
+```
+$ ./bin/genus-cli -c City -p com.example -s cities.yml -o your/project/src/main/java
+```
+Run without any option to show command line option discription.
+
+
+
+### Library
+
+Download [latest library](https://github.com/kikuchy/genum/releases) and unzip it.
+
+_Maybe, Genum will be registed to Maven Central._
 
 
 ## It's inspired from...
