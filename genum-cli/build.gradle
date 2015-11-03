@@ -6,11 +6,14 @@ apply plugin: 'application'
 
 sourceCompatibility = 1.6
 
+mainClassName = "net.kikuchy.genum.cli.Main"
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compile project(':genum')
     compile 'args4j:args4j:2.32'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

@@ -40,7 +40,7 @@ public final class Genum {
         adapter.adapt(generatedCodeDestination);
     }
 
-    static class Builder {
+    public static class Builder {
         private String packageName;
         private String className;
 
