@@ -13,27 +13,56 @@ import java.util.zip.DataFormatException;
  * Created by kikuchy on 2015/10/26.
  */
 public final class Genum {
+    private String packageName;
+    private String className;
     private GenumOption option;
     private SourceLoader sourceLoader;
     private InputStream codeTemplateStream;
 
-    public Genum(GenumOption option) {
-        this.option = option;
-    }
-
     public void generate(InputStream sourceArrayStream ,OutputStream generatedCodeDestination)
             throws DataFormatException, IOException {
         List<EnumeratorValue> values = sourceLoader.parse(sourceArrayStream, "");
-        EnumeratorMetaData metaData = new EnumeratorMetaData(option.getCanonicalName(), values);
-        TemplateAdapter adapter = new TemplateAdapter(metaData);
-        adapter.adapt(codeTemplateStream, generatedCodeDestination);
+        EnumeratorMetaData metaData = new EnumeratorMetaData(packageName, className, values);
+        SourceGenerator adapter = new SourceGenerator(metaData);
+        adapter.adapt(generatedCodeDestination);
     }
 
-    protected void setSourceLoader(SourceLoader sourceLoader) {
-        this.sourceLoader = sourceLoader;
-    }
+    static class Builder {
+        private String packageName;
+        private String className;
 
-    protected void setCodeTemplateStream(InputStream codeTemplateStream) {
-        this.codeTemplateStream = codeTemplateStream;
+        private GenumOption option;
+        private SourceLoader sourceLoader;
+        private InputStream codeTemplateStream;
+
+        public Builder(String packageName, String className, SourceLoader sourceLoader, InputStream codeTemplateStream) {
+            this.className = className;
+            this.packageName = packageName;
+            this.sourceLoader = sourceLoader;
+            this.codeTemplateStream = codeTemplateStream;
+        }
+
+        public Builder(String canonialClassName, SourceLoader sourceLoader, InputStream codeTemplateStream) {
+            int lastPeriodIdx = canonialClassName.lastIndexOf('.');
+            this.className = canonialClassName.substring(lastPeriodIdx);
+            this.packageName =  canonialClassName.substring(0, lastPeriodIdx);
+            this.sourceLoader = sourceLoader;
+            this.codeTemplateStream = codeTemplateStream;
+        }
+
+        public Builder setOption(GenumOption option) {
+            this.option = option;
+            return this;
+        }
+
+        public Genum build() {
+            Genum genum = new Genum();
+            genum.codeTemplateStream = codeTemplateStream;
+            genum.sourceLoader = sourceLoader;
+            genum.packageName = packageName;
+            genum.className = className;
+            genum.option = option;
+            return genum;
+        }
     }
 }

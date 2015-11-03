@@ -8,14 +8,16 @@ import java.util.List;
 public class EnumeratorMetaData {
     private List<EnumeratorValue> enums;
     private IdentityMetaData idMeta;
-    private String name;
+    private String className;
+    private String packageName;
 
-    public EnumeratorMetaData(String name, List<EnumeratorValue> enums) {
-        this(name, enums, new IdentityMetaData());
+    public EnumeratorMetaData(String packageName, String className, List<EnumeratorValue> enums) {
+        this(packageName, className, enums, new IdentityMetaData());
     }
 
-    public EnumeratorMetaData(String name, List<EnumeratorValue> enums, IdentityMetaData idMeta) {
-        this.name = name;
+    public EnumeratorMetaData(String packageName, String className, List<EnumeratorValue> enums, IdentityMetaData idMeta) {
+        this.packageName = packageName;
+        this.className = className;
         this.enums = enums;
         this.idMeta = idMeta;
     }
@@ -28,7 +30,11 @@ public class EnumeratorMetaData {
         return idMeta;
     }
 
-    public String getName() {
-        return name;
+    public String getClassName() {
+        return className;
+    }
+
+    public String getPackageName() {
+        return packageName;
     }
 }
