@@ -1,8 +1,10 @@
 # Genum - Generate Enum from YAML
 
+[![Build Status](https://travis-ci.org/kikuchy/genum.svg)](https://travis-ci.org/kikuchy/genum)
+
 Genum is the code generator that generate Java enum class file from YAML array.
 
-You can share the definition between server sile and client application!
+You can share the definition between server side and client application!
 
 For example, here is a array written in YAML format.
 
@@ -47,6 +49,13 @@ $ ./bin/genus-cli -c City -p com.example -s cities.yml -o your/project/src/main/
 ```
 Run without any option to show command line option discription.
 
+```
+ -c (--class-name) VAL   : Class name of Enum class.
+ -o (--output) FILE      : Destination directory. Package directory will make
+                           automatically.
+ -p (--package-name) VAL : Package name that used for 'package' statement.
+ -s (--source) FILE      : Source YAML file.
+```
 
 
 ### Library
