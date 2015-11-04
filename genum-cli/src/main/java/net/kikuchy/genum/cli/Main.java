@@ -33,7 +33,11 @@ public class Main {
         InputStream yamlData;
         OutputStream sourceCode;
         try {
-            yamlData = new FileInputStream(option.yamlFile);
+            if (option.yamlFile == null) {
+                yamlData = System.in;
+            } else {
+                yamlData = new FileInputStream(option.yamlFile);
+            }
             sourceCode = new FileOutputStream(touchDistFile(option));
             genum.generate(yamlData, sourceCode);
         } catch (FileNotFoundException e) {
@@ -66,7 +70,7 @@ public class Main {
         public String packageClass;
         @Option(name = "-c", aliases = "--class-name", usage = "Class name of Enum class.", required = true)
         public String className;
-        @Option(name = "-s", aliases = "--source", usage = "Source YAML file. ", required = true)
+        @Option(name = "-s", aliases = "--source", usage = "Source YAML file. If omit this option, genum-cli try to use standard input.")
         public File yamlFile;
         @Option(name = "-o", aliases = "--output", usage = "Destination directory. Package directory will make automatically.", required = true)
         public File distDir;
